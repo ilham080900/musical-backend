@@ -18,7 +18,7 @@ module.exports = {
       return httpResponse(res, 400, error, null);
     }
   },
-  addSongToPlaylist: async (req, res) => {
+  listSongs: async (req, res) => {
     const { error, value } = validator.listSongs(req.query);
 
     if (error) {
