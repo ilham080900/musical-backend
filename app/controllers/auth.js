@@ -19,7 +19,7 @@ module.exports = {
     }
 
     try {
-      value.password = `${hashPassword(value.password)}`;
+      value.password = await hashPassword(value.password);
       const checkUsername = await models.findUser(value);
 
       if (checkUsername.data) {

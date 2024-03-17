@@ -32,15 +32,16 @@ module.exports = {
             t1.id, 
             t1.playlist_name, 
             t1.user_id, 
+            t2.song_id,
             t3.song_name,
             t3.artist,
             t3.genre,
             t3.thumbnail,
             t3.video
         FROM playlist t1
-        JOIN playlists_songs t2 
+        LEFT JOIN playlists_songs t2 
                 ON t2.playlist_id = t1.id
-        JOIN song t3 
+        LEFT JOIN song t3 
                 ON t3.id = t2.song_id
         WHERE t1.user_id = ${data}; 
         `;
@@ -66,13 +67,16 @@ module.exports = {
                 };
               }
 
-              formattedPlaylists[playlistId].songs.push({
-                song_name: row.song_name,
-                artist: row.artist,
-                genre: row.genre,
-                thumbnail: row.thumbnail,
-                video: row.video,
-              });
+              if (row.song_name) {
+                formattedPlaylists[playlistId].songs.push({
+                  id: row.song_id,
+                  song_name: row.song_name,
+                  artist: row.artist,
+                  genre: row.genre,
+                  thumbnail: row.thumbnail,
+                  video: row.video,
+                });
+              }
             }
 
             return Object.values(formattedPlaylists); // Convert object to array for consistent output
