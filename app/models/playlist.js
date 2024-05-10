@@ -37,7 +37,10 @@ module.exports = {
             t3.artist,
             t3.genre,
             t3.thumbnail,
-            t3.video
+            t3.video,
+            t3.lirik,
+            t3.chord,
+            t3.video_chord
         FROM playlist t1
         LEFT JOIN playlists_songs t2 
                 ON t2.playlist_id = t1.id
@@ -75,6 +78,9 @@ module.exports = {
                   genre: row.genre,
                   thumbnail: row.thumbnail,
                   video: row.video,
+                  lirik: row.lirik,
+                  chord: row.chord,
+                  video_chord: row.video_chord,
                 });
               }
             }
