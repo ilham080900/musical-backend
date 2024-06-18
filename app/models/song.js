@@ -2,18 +2,18 @@ const mysqlDb = require("../connection/database");
 
 module.exports = {
   createNewSong: async (data) => {
-    const { song_name, artist, genre, thumbnail, video } = data;
+    const { song_name, artist, genre, thumbnail, video, lirik, video_chord, chord } = data;
     try {
       const connection = await mysqlDb();
       return new Promise((resolve, reject) => {
-        const sql = `INSERT INTO song (song_name, artist, genre, thumbnail, video) 
+        const sql = `INSERT INTO song (song_name, artist, genre, thumbnail, video, lirik, video_chord, chord) 
             VALUES ("${song_name}", "${artist}", "${genre}", "${
-          thumbnail || ""
-        }", "${video || ""}")
+          thumbnail || ""}", "${video || ""}", "${lirik || ""}", "${video_chord || ""}", "${chord || ""}")
         `;
 
         connection.query(sql, (error, results) => {
           if (error) {
+            console.log(error)
             reject({ message: error });
           }
 
@@ -37,7 +37,7 @@ module.exports = {
         } else if (genre) {
           sql = `SELECT * FROM song WHERE genre LIKE '%${genre}%'`;
         } else {
-          sql = `SELECT * FROM song`;
+          sql = `SELECT * FROM song ORDER BY id DESC`;
         }
 
         connection.query(sql, (error, results) => {

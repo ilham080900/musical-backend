@@ -6,4 +6,5 @@ module.exports = {
   createPlaylist: require("./playlist").createPlaylist,
   listPlaylist: require("./playlist").listPlaylist,
   addSongToPlaylist: require("./playlist").addSongToPlaylist,
+  playlistRecomendation: require("./playlist").playlistRecomendation
 };

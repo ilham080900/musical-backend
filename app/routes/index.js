@@ -11,4 +11,5 @@ module.exports = (app) => {
   app.post("/api/create-playlist", isLoginUser, controller.createPlaylist);
   app.get("/api/list-playlist", isLoginUser, controller.listPlaylist);
   app.post("/api/addto-playlist", isLoginUser, controller.addSongToPlaylist);
+  app.get("/api/recomended-playlist", controller.playlistRecomendation);
 };

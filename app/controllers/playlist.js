@@ -43,4 +43,15 @@ module.exports = {
       return httpResponse(res, 400, error, null);
     }
   },
+  playlistRecomendation: async (req, res) => {
+    try {
+      const idAdmin = 12
+
+      const playlist = await models.listPlaylist(idAdmin);
+
+      return httpResponse(res, 200, "Success get recommended playlist", playlist);
+    } catch (error) {
+      return httpResponse(res, 400, error, null);
+    }
+  },
 };

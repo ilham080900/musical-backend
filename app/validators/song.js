@@ -8,6 +8,9 @@ module.exports = {
       genre: Joi.string().required(),
       thumbnail: Joi.string().allow("", null),
       video: Joi.string().allow("", null),
+      lirik: Joi.string().allow("", null),
+      video_chord: Joi.string().allow("", null),
+      chord: Joi.string().allow("", null),
     });
 
     return schema.validate(data);
